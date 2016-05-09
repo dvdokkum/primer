@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="primer" ng-controller="test">
+<html ng-app="primer" ng-controller="main">
   <head>
   	<title>Primer</title>
     <script src="/bower_components/angular/angular.min.js"></script>
@@ -8,10 +8,7 @@
   </head>
   <body>
     <div>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello {{yourName}}!</h1>
+      <p ng-click="login()">Click here to login to Spotify</p>
     </div>
   </body>
 </html>
