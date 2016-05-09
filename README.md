@@ -1,9 +1,10 @@
 # primer
 
-to get started
+to test locally
 
 	cd primer
 	npm install
+	bower isntall
 	npm start
 
-and cruise on over to http://localhost:3000/
+then, cruise on over to http://localhost:3000/
