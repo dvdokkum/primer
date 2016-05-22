@@ -9,8 +9,9 @@
 
   </head>
   <body>
+  <p ng-style="logged_in">Welcome {{user_name}}</p>
     <div>
-      <img class="brighten" style="cursor: pointer;" src="images/log_in-desktop-medium.png" data-ng-click="login()">
+      <img ng-style="not_logged_in" class="brighten" style="cursor: pointer;" src="images/log_in-desktop-medium.png" data-ng-click="login()">
       <button ng-click="topTracks()">Click here to see top tracks</button>
     </div>
   </body>

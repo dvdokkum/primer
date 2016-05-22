@@ -8,20 +8,40 @@ primer.config(function (SpotifyProvider) {
   SpotifyProvider.setScope('user-top-read user-library-read user-follow-read playlist-read-private');
 	
 	//get token from localstorage on init if present
-	var token = localStorage.getItem('spotify-token');
+	setToken = function() {
+		token = localStorage.getItem('spotify-token');
 		if (token !== null) {
 			SpotifyProvider.setAuthToken(token);
 		};
+	}
+
+	setToken();
+
 });
 
 primer.controller('main', ['$scope', 'Spotify', function($scope, Spotify) {
 
-	Spotify.getCurrentUser().then(function (data) {
-  	console.log(data);
-	});
+	check_login = function() {
+	 if (token !== null) {
+		Spotify.getCurrentUser().then(function (data) {
+			user = data;
+			console.log(user);
+			if (user.id !== undefined) {
+			console.log(user.id);
+			$scope.user_name = user.id;
+			$scope.not_logged_in = {'display':'none'};
+			$scope.logged_in = {'display':'inline'};
+			} else {$scope.logged_in = {'display':'none'}};		
+	})} else {$scope.logged_in = {'display':'none'}};
+	};
+
+	check_login();
 
 	$scope.login = function() {
-		Spotify.login();
+		Spotify.login().then(function() {
+			setToken();
+			check_login();
+		});
 	};
 
 	$scope.topTracks = function() {
